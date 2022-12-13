@@ -122,7 +122,31 @@ Comparing the before and after plots allows you to check the effect of the base 
 For this purpose, I had to install few new packages in R, since otherwise there were few errors occurring. Install: gplots. 
 And run for loop, which takes only few minutes, so you don’t really need to send it on cluster.
 
-`for input in `ls /your_path/*post_BaseRecalibrator.table`; do java -jar /apps/software/java-jdk-1.8.0_92/gatk/3.7/GenomeAnalysisTK.jar -T AnalyzeCovariates -R /your_path/sources_hg38/resources-broad-hg38-v0-Homo_sapiens_assembly38.fasta -before ${input%post_BaseRecalibrator.table}"BaseRecalibrator.table" -after $input -plots ${input%post_BaseRecalibrator.table}"plots_BQSR.pdf" -l DEBUG ;done`
+## Step 5d: Apply the recalibration to your sequence data
+
+This creates a .bam file containing all the original reads, but now with exquisitely accurate base substitution, insertion and deletion quality scores. By default, the original quality scores are discarded in order to keep the file size down. 
+Notice how this step uses a very simple tool, PrintReads, to apply the recalibration. What’s happening here is that we are loading in the original sequence data, having the GATK engine recalibrate the base qualities on-the-fly thanks to the -BQSR flag (as explained earlier), and just using PrintReads to write out the resulting data to the new file.
+
+
+## Step 6: Variant Discovery
+
+Calling variants is the last step (next you can do any kind of filtering).
+After that step we are getting the .vcf files with all the variants.
+Here I include example script, which you will have to modify for your needs. In this case I didn’t use for loop, just I manually choose, what do I want to include.
+
+To zip vcf file for analysis use tabix (which is part of samtools 1.5 on gardner):
+
+`bgzip -c file.vcf > file.vcf.gz`
+
+`tabix -p vcf file.vcf.gz
+`
+
+First part will zip your file and the second command will create a index file for your zipped vcf. As a next thing, you can open .vcf files in BasePlayer and by VariantManager find the variants you are interested in. 
+
+
+
+
+
 
 
 
