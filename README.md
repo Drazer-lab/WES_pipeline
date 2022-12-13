@@ -1,6 +1,6 @@
 # WES_pipeline
 
-Step 1: Generate unmapped BAM from FASTQ
+##Step 1: Generate unmapped BAM from FASTQ
 
 Generate an unmapped BAM from FASTQ
 Convert FASTQ to uBAM and add read group information using FastqToSam.
@@ -18,7 +18,7 @@ Used a “for” loop, which takes each R1 fastq file, combines it with the R2 p
 
 
 
-Step 2: Mark adapter sequences using MarkIlluminaAdapters
+##Step 2: Mark adapter sequences using MarkIlluminaAdapters
 
 MarkIlluminaAdapters adds the XT tag to a read record to mark the 5' start position of the specified adapter sequence and produces a metrics file. Some of the marked adapters come from concatenated adapters that randomly arise from the primordial soup that is a PCR reaction. Others represent read-through to 3' adapter ends of reads and arise from insert sizes that are shorter than the read length.
 (https://software.broadinstitute.org/gatk/documentation/article.php?id=6483 ) 
