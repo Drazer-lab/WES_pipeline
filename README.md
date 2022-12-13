@@ -122,8 +122,8 @@ Comparing the before and after plots allows you to check the effect of the base 
 For this purpose, I had to install few new packages in R, since otherwise there were few errors occurring. Install: gplots. 
 And run for loop, which takes only few minutes, so you don’t really need to send it on cluster.
 
-`for input in `ls /your_path/*post_BaseRecalibrator.table`; do java -jar /apps/software/java-jdk-1.8.0_92/gatk/3.7/GenomeAnalysisTK.jar -T AnalyzeCovariates -R /your_path/sources_hg38/resources-broad-hg38-v0-Homo_sapiens_assembly38.fasta -before ${input%post_BaseRecalibrator.table}"BaseRecalibrator.table" -after $input -plots ${input%post_BaseRecalibrator.table}"plots_BQSR.pdf" -l DEBUG ;done
-`
+for input in `ls /your_path/*post_BaseRecalibrator.table`; do java -jar /apps/software/java-jdk-1.8.0_92/gatk/3.7/GenomeAnalysisTK.jar -T AnalyzeCovariates -R /your_path/sources_hg38/resources-broad-hg38-v0-Homo_sapiens_assembly38.fasta -before ${input%post_BaseRecalibrator.table}"BaseRecalibrator.table" -after $input -plots ${input%post_BaseRecalibrator.table}"plots_BQSR.pdf" -l DEBUG ;done
+
 
 
 
