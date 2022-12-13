@@ -4,6 +4,8 @@ Kornelia Gladysz
 
 It's important to note that most filepaths in the scripts will need to be edited. Look for "/your_path" and check the directory of the error out output files in the PBS header before running. 
 
+The scripts assume you're using GRCh38. If not, you'll need to make additional edits where the build is referenced. 
+
 Steps 5B and 5C are not essential for variant calling but are useful for QC. 
 
 ## Step 1: Generate unmapped BAM from FASTQ
